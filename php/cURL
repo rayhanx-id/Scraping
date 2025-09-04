@@ -1,0 +1,11 @@
+<?php
+$html = file_get_contents("https://quotes.toscrape.com/");
+$dom = new DOMDocument;
+@$dom->loadHTML($html);
+$xpath = new DOMXPath($dom);
+
+$quotes = $xpath->query("//span[@class='text']");
+foreach ($quotes as $quote) {
+    echo $quote->nodeValue . "\n";
+}
+?>
